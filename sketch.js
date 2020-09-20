@@ -14,7 +14,7 @@ var thunderSound;
 var rainSound
 function preload(){
   bgImg=loadImage("ST.jpg");
-  thunder1=loadImage("Thunder5.png");
+  thunder1=loadImage("thunder5.png");
   thunder2=loadImage("thunder4.png");
   thunder3=loadImage("thunder3.png");
   thunder4=loadImage("thunder6.png")
