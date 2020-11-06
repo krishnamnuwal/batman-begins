@@ -1,15 +1,15 @@
 class Drops{
-    constructor(x,y,width,height){
+    constructor(x,y,radius){
         var option={
-           // density:0.4,
+            restitution: 0.1,
             friction:0
 
         }
-        this.body=Bodies.rectangle(x,y,width,height,option);
+        this.body=Bodies.circle(x,y,radius,option);
      //   this.radius=20;
-     this.width=width;
-     this.height=height;
-        this.image=loadImage("drop.png");
+     this.radius=radius
+     this.color=rgb(random(20,70),random(30,50),random(100,230))
+     
       //  this.color=color(0,0,135)
       //  this.image=loadImage("Drops.png")
         
@@ -18,22 +18,30 @@ class Drops{
     dropFalling(speed){
         this.y +=speed
     }
+    update(){
+        if(this.body.position.y>900){
+            Matter.Body.setPosition(this.body,{x:random(0,3000),y:random(-100,0)})
+
+
+        }
+
+
+
+    }
+
+
     display(){
      //   fill(this.color);
         var pos=this.body.position;
         push();
         translate(pos.x,pos.y)
-        imageMode(CENTER)
-        image(this.image,0,0,this.width,this.height);
+        ellipseMode(CENTER)
+        fill(this.color)
+        ellipse(0,0,this.radius);
 
         pop();
 
     }
-    reset(){
-        if(this.body.position.y>1000){
-            this.body.position.x=this.x
-            this.body.position.y=this.y
-        }
-    }
+   
 
 }

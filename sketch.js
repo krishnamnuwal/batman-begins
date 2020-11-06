@@ -4,7 +4,7 @@ const Engine=Matter.Engine;
 const World=Matter.World;
 var bgImg
 var drops=[]
-//var maxDrops=200
+var maxDrops=700
 var drop
 var man;
 var land
@@ -32,7 +32,13 @@ function setup(){
   man=new Umbrella(1250,750,225)
 //  land=new Land(10,980,3000,20);
 //
-
+if(frameCount%100===0){
+  for(var i=0;i<maxDrops;i++){
+    var drop=new Drops(random(0,3000),random(0,1000),10)
+  //  drop.lifetime=200
+    drops.push(drop)
+  }
+}
 
 }
 function draw(){
@@ -43,26 +49,23 @@ function draw(){
   
   rainDrops();
 
-  for(var i=0;i<drops.length;i++){
+  for(var i=0;i<maxDrops;i++){
     drops[i].display();
-    drops[i].dropFalling(600)
+    drops[i].update();
    // land.display();
 
 
   }
  
+  
+  
  
 lightning();
 
 }
 function rainDrops(){
 
-  if(frameCount%1===0){
-    var drop=new Drops(random(0,3000),0,10,15)
-  //  drop.lifetime=200
-    drops.push(drop)
-  }
-
+  
 }
 function lightning(){
   if(frameCount%80===0){
